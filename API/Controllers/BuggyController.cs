@@ -23,14 +23,21 @@ public class BuggyController : BaseApiController
 
     
     [HttpGet("not_found")]
-    public ActionResult<AppUser> GetNotFound()
+    // This method is used to get a user by ID from the database.
+    // If the user does not exist, it returns a NotFound response.
+    public ActionResult<AppUser> GetUser()
     {
-        var thing = _context.Users.Find(-1);
-        if(thing == null) return NotFound();
+        // Trying to find a user with ID -1, which does not exist.
+        var user = _context.Users.Find(-1);
+        
+        // If the user is not found, return a NotFound response.
+        if(user == null) 
+        {
+            return NotFound();
+        }
 
-        return thing;
+        return user;
     }
-
     [HttpGet("server-error")]
     public ActionResult<string> GetServerError()
     {

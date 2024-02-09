@@ -15,16 +15,19 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void{
   }
+  // This function is used to register a new user. 
   register(){
+    // We call the register function from the accountService and pass in the model.
     this.accountService.register(this.model).subscribe({
-      next: () =>{
+      // If the registration is successful, we call the cancel function.
+      next: () => {
         this.cancel();
       },
+      // If there is an error during registration, we display an error message using toastr and log the error in the console.
       error: error => {
       this.toastr.error(error.error);
       console.log(error);
     }
-    
     })
   }
 
