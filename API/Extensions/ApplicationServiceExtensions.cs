@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using CloudinaryDotNet;
 using Microsoft.EntityFrameworkCore;
 
 namespace API;
@@ -40,6 +41,8 @@ public static class ApplicationServiceExtensions
         // AutoMapper is a simple little library built to solve a deceptively complex problem - getting rid of code that mapped one object to another
         // The assemblies to search for profiles are retrieved from the current application domain
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
 
         return services;
 
